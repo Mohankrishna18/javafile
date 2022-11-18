@@ -24,11 +24,20 @@ jobs:
       with:
         java-version: '1.8'
         distribution: 'adopt'
-#         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-#         settings-path: ${{ github.workspace }} # location for the settings.xml file
-
+        cache: maven
     - name: Build with Maven
       run: mvn clean install
+   
+    - name: Build & push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: mohankrishnam/springboot-github-actions
+        tags: latest 
+        registry: docker.io
+        dockerfile: Dockerfile
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+     
 
 #     - name: Publish to GitHub Packages Apache Maven
 #       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
