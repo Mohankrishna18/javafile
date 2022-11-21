@@ -36,9 +36,9 @@ jobs:
         registry: docker.io
         dockerfile: Dockerfile
         
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-     
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+      
 
 #     - name: Publish to GitHub Packages Apache Maven
 #       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
